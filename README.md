@@ -4,7 +4,8 @@
 
 ## 当前网站
 
-https://kongdexi.happypixie20.chatgpt.site
+- GitHub Pages：https://larry2075.github.io/kongdexi-personal-website/
+- Sites：https://kongdexi.happypixie20.chatgpt.site
 
 ## 本地运行
 
@@ -38,8 +39,8 @@ python3 -m http.server 8766 --bind 127.0.0.1 --directory local-archive/playgroun
 
 ## 修改与发布
 
-修改姓名、电话和文案主要编辑 `dist/index.html`；复制号码中的号码还需要同步修改 `dist/motion.js`。当前静态网站的完整文件位于 `dist/`，可以部署到支持静态网站的服务。GitHub 备份本身不会自动更新线上网站。
+修改姓名、电话和文案主要编辑 `dist/index.html`；复制号码中的号码还需要同步修改 `dist/motion.js`。当前静态网站的完整文件位于 `dist/`，可以部署到支持静态网站的服务。推送 `main` 分支中 `dist/` 的修改后，GitHub Actions 会自动部署到 GitHub Pages；也可在 Actions 页面手动运行部署。Sites 地址需要通过原发布流程单独更新。
 
 ## 版本与备份
 
-此仓库保存所有网站源码与历史版本，Git 提交历史记录后续更改。旧版中的外部字体依赖网络；当前动效版无需外部依赖。仓库包含网站上的姓名和联系电话，备份优先使用私有仓库。
+此仓库保存所有网站源码与历史版本，Git 提交历史记录后续更改。旧版中的外部字体依赖网络；当前动效版无需外部依赖。仓库已按所有者要求公开，其中包含网站上的姓名和联系电话。
