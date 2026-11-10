@@ -62,3 +62,8 @@ python3 -m http.server 8766 --bind 127.0.0.1 --directory local-archive/playgroun
 页面使用所有者提供的资料，加入动漫、手办与周边兴趣，以及俄罗斯交换经历。正文未补写未经提供的学校、专业和交换日期。`dist/assets/photos/` 为网页使用的本地照片；首屏人像使用所有者确认的双人近景合照右侧人物，经过背景移除处理。当前网页使用自然修饰版 `kongdexi-portrait-retouched.png`，调整肤色、泛红与光线，保留五官、发型和皮肤质感；原抠图 `kongdexi-portrait.png` 继续保留。修饰工具与完整提示词记录在 `local-archive/portrait-retouch.md`。原始合照和飞书登录数据不存入仓库。
 
 照片查看器支持鼠标、左右方向键、Esc 关闭和焦点返回。
+
+
+## 正文照片背景
+
+首页首屏保留原有背景。关于、故事、兴趣、横向相册、联系区和页脚共用所有者提供的 `dist/assets/photos/russia-building-background.jpg`，以固定背景保持照片比例，浅色遮罩保证正文可读，联系区使用深色遮罩。原照片未经改图处理。

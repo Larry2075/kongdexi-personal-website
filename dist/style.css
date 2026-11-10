@@ -10,3 +10,16 @@
 
 /* Native horizontal gallery: touch, trackpad, wheel and arrow controls. */
 .gallery-controls{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:0 4.5% 24px}.gallery-controls>span{font-size:12px}.gallery-controls small{margin-left:20px;font-size:10px;color:#777}.gallery-controls>div{display:flex;gap:10px}.gallery-controls button{display:grid;place-items:center;width:44px;height:44px;border:1px solid var(--line);border-radius:50%;background:#fff;font-size:22px;transition:background .25s,color .25s}.gallery-controls button:hover:not(:disabled){background:var(--ink);color:white}.gallery-controls button:disabled{opacity:.3;cursor:default}.gallery-row:focus-visible{outline:2px solid var(--blue);outline-offset:-3px}.gallery-row::-webkit-scrollbar{height:5px}.gallery-row::-webkit-scrollbar-thumb{background:#a1a5a6;border-radius:5px}.gallery-row a:focus-visible{outline-offset:-3px}@media(max-width:760px){.gallery-controls{padding:0 7% 18px}.gallery-controls small{display:block;margin:8px 0 0;font-size:9px}.gallery-controls button{width:38px;height:38px}}
+
+/* The owner's supplied photo is the shared backdrop below the opening hero. */
+body{isolation:isolate;background:#d9e7f2}
+body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;background:linear-gradient(rgba(255,255,255,.73),rgba(255,255,255,.73)),url('assets/photos/russia-building-background.jpg') center center/cover no-repeat}
+main>section:not(.hero):not(.contact){background:transparent;--muted:#4f6170;--line:#52687945}
+.story-kicker,.story-heading p,.story-photo figcaption,.gallery-controls small{color:#465969}
+.project:hover h3{color:#49677e}
+.gallery-row a{background:rgba(245,249,252,.78)}
+.gallery-controls button{background:rgba(255,255,255,.86)}
+.section-curve{display:none}
+main>.contact{background:rgba(15,30,48,.86);margin-top:0;padding-top:100px}
+footer{background:rgba(15,30,48,.92)}
+@media(max-width:760px){body::before{background-position:center center}main>.contact{padding-top:75px}}
