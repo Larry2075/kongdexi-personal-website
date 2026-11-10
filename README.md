@@ -56,3 +56,9 @@ python3 -m http.server 8766 --bind 127.0.0.1 --directory local-archive/playgroun
 - `dist/experiments/playground/`：小车互动版。
 - `dist/experiments/namecard/`：最初名片版。
 - `local-archive/personal-archive-v5/`：此次改版前的源码备份。
+
+## 个人资料与照片
+
+页面使用所有者提供的资料，加入动漫、手办与周边兴趣，以及俄罗斯交换经历。正文未补写未经提供的学校、专业和交换日期。`dist/assets/photos/` 为网页使用的本地照片；首屏人像使用所有者确认的双人近景合照右侧人物，经过背景移除处理。原始合照和飞书登录数据不存入仓库。
+
+照片查看器支持鼠标、左右方向键、Esc 关闭和焦点返回。
