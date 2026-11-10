@@ -4,8 +4,8 @@
   const heading = document.getElementById('hero-title');
   const replay = document.getElementById('replay-intro');
   const media = matchMedia('(prefers-reduced-motion: reduce)');
-  const lines = [...heading.querySelectorAll('.title-line, .hero-english')];
-  const companions = [...document.querySelectorAll('.hero .hello, .hero-note, .hero-sculpture, .hero-footer')];
+  const lines = [...heading.querySelectorAll('.title-line')];
+  const companions = [...document.querySelectorAll('.signature, .hero-emblem, .hero-bottom')];
   let animations = [], overlay, safetyTimer, generation = 0, running = false;
   const namespace = 'http://www.w3.org/2000/svg';
 

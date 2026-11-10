@@ -48,4 +48,11 @@ python3 -m http.server 8766 --bind 127.0.0.1 --directory local-archive/playgroun
 
 ## 当前设计
 
-中文大字首屏、橙色滚动字带、模态侧滑导航、视觉随想列表与悬停预览、卡片详情、磁性按钮和实时 UTC+8 时钟。键盘可操作导航与弹层，系统设置减少动态效果时会关闭动画。
+从零重建的黑白红个人档案：Tobias 风格的文字轮廓绘制、填充与模糊显现开场；大幅排版、原生 SVG 拱形背景和个人标识海报；Dennis 风格的项目悬停预览与磁性按钮；侧滑导航、海报滚动视差和电话复制。保留键盘操作、减少动态效果与开场超时恢复。
+
+### 历史体验
+
+- `dist/experiments/playground/`：可直接在线访问的小车互动旧版。
+- `dist/experiments/namecard/`：可直接在线访问的名片旧版。
+- `local-archive/editorial-v4/`：本次重建前的完整页面备份。
+- `dist/assets/`：本页使用的原创 SVG 图形，不依赖外部图床或字体。
