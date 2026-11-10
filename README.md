@@ -48,11 +48,11 @@ python3 -m http.server 8766 --bind 127.0.0.1 --directory local-archive/playgroun
 
 ## 当前设计
 
-从零重建的黑白红个人档案：Tobias 风格的文字轮廓绘制、填充与模糊显现开场；大幅排版、原生 SVG 拱形背景和个人标识海报；Dennis 风格的项目悬停预览与磁性按钮；侧滑导航、海报滚动视差和电话复制。保留键盘操作、减少动态效果与开场超时恢复。
+以 Dennis Snellenberg 的页面组织为参考重建：灰色全屏首屏、原创金属 K 字形、循环横移姓名、多语言开场和弧形退场、白底介绍与悬停作品列表、横向滚动图集、深色联系区及蓝色磁性按钮。所有展示内容为孔德曦的个人信息及实际网站历史版本，不包含虚构职业或项目。
 
-### 历史体验
+开场可按 Esc 或点击跳过；页脚可以重播。系统启用减少动态效果时会直接显示页面。当前主页资源均为本地文件，无第三方字体或图片依赖。
 
-- `dist/experiments/playground/`：可直接在线访问的小车互动旧版。
-- `dist/experiments/namecard/`：可直接在线访问的名片旧版。
-- `local-archive/editorial-v4/`：本次重建前的完整页面备份。
-- `dist/assets/`：本页使用的原创 SVG 图形，不依赖外部图床或字体。
+- `dist/experiments/archive/`：上一版黑白红个人档案。
+- `dist/experiments/playground/`：小车互动版。
+- `dist/experiments/namecard/`：最初名片版。
+- `local-archive/personal-archive-v5/`：此次改版前的源码备份。
