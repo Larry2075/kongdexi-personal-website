@@ -19,3 +19,14 @@ for(const button of document.querySelectorAll('[data-art]'))button.addEventListe
 document.querySelector('.dialog-close').addEventListener('click',()=>dialog.close());document.querySelector('.dialog-next').addEventListener('click',()=>showNote((activeNote+1)%visualNotes.length));dialog.addEventListener('click',e=>{if(e.target===dialog){const r=dialog.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)dialog.close();}});dialog.addEventListener('close',()=>{if(lastTrigger)lastTrigger.focus({preventScroll:true});});
 document.getElementById('year').textContent=new Date().getFullYear();let toastTimer;
 document.getElementById('copy').addEventListener('click',async()=>{const toast=document.getElementById('toast');try{await navigator.clipboard.writeText('13243503433');toast.textContent='电话号码已复制';}catch{toast.textContent='请长按号码复制：13243503433'}toast.classList.add('visible');clearTimeout(toastTimer);toastTimer=setTimeout(()=>toast.classList.remove('visible'),2800);});
+
+// A native modal keeps focus inside the navigation and supports Escape.
+const menu=document.getElementById('site-menu'),menuToggle=document.querySelector('.menu-toggle');
+menuToggle.addEventListener('click',()=>{menu.showModal();menuToggle.setAttribute('aria-expanded','true');menuToggle.setAttribute('aria-label','导航已打开');resetMotion();});
+document.querySelector('.menu-close').addEventListener('click',()=>menu.close());
+menu.addEventListener('click',e=>{if(e.target===menu){const r=menu.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)menu.close();}});
+menu.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>menu.close()));
+menu.addEventListener('close',()=>{menuToggle.setAttribute('aria-expanded','false');menuToggle.setAttribute('aria-label','打开导航');});
+const localTime=document.getElementById('local-time');
+function updateTime(){localTime.textContent=new Intl.DateTimeFormat('en-GB',{hour:'2-digit',minute:'2-digit',timeZone:'Asia/Shanghai'}).format(new Date())+' / UTC+8';}
+updateTime();setInterval(updateTime,60000);

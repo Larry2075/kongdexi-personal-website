@@ -25,6 +25,7 @@ python3 -m http.server 8765 --bind 127.0.0.1 --directory dist
 - `dist/style.css`：响应式布局、视觉样式、动画和减少动态效果支持。
 - `dist/motion.js`：鼠标跟随、按钮吸附、滚动入场、卡片弹层和电话复制。
 - `dist/world.js`：此前小车互动版脚本，保留备份。
+- `local-archive/motion-v3/`：上一版完整精致动效网页。
 - `local-archive/namecard-v1.html`：最初的个人名片版。
 - `local-archive/playground-v2/`：完整小车互动版，可单独运行。
 - `.openai/hosting.json`：现有 Sites 发布配置。
@@ -44,3 +45,7 @@ python3 -m http.server 8766 --bind 127.0.0.1 --directory local-archive/playgroun
 ## 版本与备份
 
 此仓库保存所有网站源码与历史版本，Git 提交历史记录后续更改。旧版中的外部字体依赖网络；当前动效版无需外部依赖。仓库已按所有者要求公开，其中包含网站上的姓名和联系电话。
+
+## 当前设计
+
+中文大字首屏、橙色滚动字带、模态侧滑导航、视觉随想列表与悬停预览、卡片详情、磁性按钮和实时 UTC+8 时钟。键盘可操作导航与弹层，系统设置减少动态效果时会关闭动画。
