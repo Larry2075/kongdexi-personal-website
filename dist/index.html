@@ -1,7 +1,21 @@
 <!doctype html>
 <html lang="zh-CN">
-<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#191919"><meta name="description" content="孔德曦的个人主页。很高兴，在这里与你相遇。"><title>孔德曦 — 个人空间 / KONG DE XI</title><link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 80 80'%3E%3Crect width='80' height='80' rx='18' fill='%23ff673e'/%3E%3Ctext x='40' y='55' text-anchor='middle' font-size='45' font-family='sans-serif' fill='%23191919'%3EK%3C/text%3E%3C/svg%3E"><link rel="stylesheet" href="style.css"></head>
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#191919"><meta name="description" content="孔德曦的个人主页。很高兴，在这里与你相遇。"><title>孔德曦 — 个人空间 / KONG DE XI</title><link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 80 80'%3E%3Crect width='80' height='80' rx='18' fill='%23ff673e'/%3E%3Ctext x='40' y='55' text-anchor='middle' font-size='45' font-family='sans-serif' fill='%23191919'%3EK%3C/text%3E%3C/svg%3E"><link rel="stylesheet" href="style.css">
+<script>
+// Only opt into the opening after JavaScript is available. Always fail open.
+if (!matchMedia('(prefers-reduced-motion: reduce)').matches && !location.hash) {
+  document.documentElement.classList.add('intro-active', 'intro-pending');
+  window.introSafetyTimer = setTimeout(function () {
+    document.documentElement.classList.remove('intro-active', 'intro-pending', 'intro-leaving');
+  }, 4500);
+}
+</script><script src="intro.js" defer></script></head>
 <body>
+<div class="site-intro" id="site-intro" role="region" aria-label="开场动画" aria-hidden="true">
+  <div class="intro-top"><span>KDX / PERSONAL SPACE</span><span>WELCOME, STRANGER.</span></div>
+  <div class="intro-greeting"><i></i><span id="intro-word" aria-hidden="true">Hello.</span></div>
+  <div class="intro-bottom"><span>A NEW HELLO, A NEW BEGINNING.</span><button id="skip-intro" tabindex="-1">跳过开场 ↗</button></div>
+</div>
 <a class="skip-link" href="#about">跳至正文</a><div class="reading-progress" aria-hidden="true"></div><div id="cursor" aria-hidden="true"><span>探索 ↗</span></div>
 <header id="top"><a class="wordmark magnetic" href="#home" aria-label="孔德曦主页">kdx<span>©</span></a><span class="header-caption">PERSONAL INDEX<br>孔德曦 / 独立的个人空间</span><nav aria-label="主导航"><a class="nav-link" href="#about"><span>关于我</span><i></i></a><a class="nav-link" href="#moments"><span>视觉随想</span><i></i></a><a class="nav-link" href="#contact"><span>联系我 ↗</span><i></i></a></nav><button class="menu-toggle magnetic" aria-label="打开导航" aria-expanded="false" aria-controls="site-menu"><span></span><span></span></button></header><dialog id="site-menu" aria-label="网站导航"><button class="menu-close magnetic" aria-label="关闭导航">×</button><span class="menu-label">NAVIGATION / 去哪里看看</span><a href="#home"><small>01</small> 首页 <span>↗</span></a><a href="#about"><small>02</small> 关于我 <span>↗</span></a><a href="#moments"><small>03</small> 视觉随想 <span>↗</span></a><a href="#contact"><small>04</small> 联系我 <span>↗</span></a><div class="menu-bottom">KONG DE XI <span>很高兴认识你。</span></div></dialog>
 <main>
@@ -13,6 +27,6 @@
 <button class="visual-card reveal" data-art="meet" data-index="03" aria-label="打开相遇视觉随想" data-cursor="展开 ↗"><span class="visual-art meet-art" aria-hidden="true"><span class="meet-ball b1"></span><span class="meet-ball b2"></span><span class="meet-orbit"></span><span class="art-number">03</span></span><span class="card-caption"><span><strong>恰好相遇</strong><small>ENCOUNTER / 从一句你好开始</small></span><span class="card-arrow">↗</span></span></button>
 </div></section>
 <section class="contact section-pad" id="contact" aria-labelledby="contact-title"><div class="section-kicker reveal"><span>03 / GET IN TOUCH</span><span><i class="status-dot"></i> SAY HELLO</span></div><div class="contact-heading reveal"><h2 id="contact-title">从一句<br><span>你好</span>开始。</h2><a class="contact-orb magnetic" href="tel:13243503433" aria-label="致电孔德曦 13243503433"><span>打个招呼</span><span class="large-arrow" aria-hidden="true">↗</span></a></div><div class="contact-bar reveal"><div><span class="contact-label">PHONE / 联系电话</span><a class="phone" href="tel:13243503433">132 4350 3433</a></div><button class="copy-btn magnetic" id="copy">复制号码 <span aria-hidden="true">⧉</span></button><span class="contact-note">很高兴，<br>我们的故事从这里开始。</span></div></section>
-</main><footer><a class="wordmark" href="#home" aria-label="回到孔德曦主页">kdx<span>©</span></a><span>© <span id="year">2026</span> 孔德曦</span><a class="source-link" href="https://github.com/Larry2075/kongdexi-personal-website" target="_blank" rel="noopener noreferrer">GITHUB ↗</a><a class="back-top" href="#home">回到顶部 <span>↑</span></a></footer>
+</main><footer><a class="wordmark" href="#home" aria-label="回到孔德曦主页">kdx<span>©</span></a><span>© <span id="year">2026</span> 孔德曦</span><button class="replay-intro" id="replay-intro">重播开场 ↗</button><a class="source-link" href="https://github.com/Larry2075/kongdexi-personal-website" target="_blank" rel="noopener noreferrer">GITHUB ↗</a><a class="back-top" href="#home">回到顶部 <span>↑</span></a></footer>
 <dialog id="art-dialog" aria-labelledby="dialog-title"><button class="dialog-close" aria-label="关闭视觉随想">关闭 ×</button><div class="dialog-art" aria-hidden="true"></div><div class="dialog-copy"><span id="dialog-kicker"></span><h2 id="dialog-title"></h2><p id="dialog-description"></p><button class="dialog-next">下一个片刻 ↗</button></div></dialog><div class="toast" id="toast" role="status" aria-live="polite"></div><script src="motion.js"></script>
 </body></html>
