@@ -56,7 +56,7 @@ footer{background:rgba(15,30,48,.92)}
 
 @media (prefers-reduced-motion: no-preference) {
   .story-grid.is-drifting {
-    column-gap: 60px;
+    column-gap: 64px;
   }
 
   .story-grid.is-drifting > .story-photo {
@@ -66,6 +66,8 @@ footer{background:rgba(15,30,48,.92)}
     --drift-period: 19s;
     --drift-delay: -5s;
     --drift-scale: 1;
+    --drift-travel-x: calc(var(--drift-x) * var(--drift-scale) * (1 + var(--drift-energy, 0) * .12));
+    --drift-travel-y: calc(var(--drift-y) * var(--drift-scale) * (1 + var(--drift-energy, 0) * 1.7));
     animation: story-photo-drift var(--drift-period) ease-in-out var(--drift-delay) infinite;
   }
 
@@ -120,17 +122,17 @@ footer{background:rgba(15,30,48,.92)}
   }
   25% {
     transform:
-      translate(calc(var(--drift-x) * var(--drift-scale)), calc(var(--drift-y) * var(--drift-scale) * -.65))
+      translate(var(--drift-travel-x), calc(var(--drift-travel-y) * -.65))
       rotate(calc(var(--drift-tilt) * var(--drift-scale)));
   }
   52% {
     transform:
-      translate(calc(var(--drift-x) * var(--drift-scale) * .2), calc(var(--drift-y) * var(--drift-scale)))
+      translate(calc(var(--drift-travel-x) * .2), var(--drift-travel-y))
       rotate(0deg);
   }
   78% {
     transform:
-      translate(calc(var(--drift-x) * var(--drift-scale) * -.8), calc(var(--drift-y) * var(--drift-scale) * -.35))
+      translate(calc(var(--drift-travel-x) * -.8), calc(var(--drift-travel-y) * -.35))
       rotate(calc(var(--drift-tilt) * var(--drift-scale) * -.65));
   }
 }

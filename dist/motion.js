@@ -26,9 +26,11 @@ gallery.addEventListener('scroll',updateGalleryControls,{passive:true});addEvent
 gallery.addEventListener('wheel',event=>{if(event.ctrlKey||event.metaKey||event.shiftKey||Math.abs(event.deltaX)>=Math.abs(event.deltaY))return;const unit=event.deltaMode===1?16:event.deltaMode===2?gallery.clientWidth:1;const delta=event.deltaY*unit;const max=gallery.scrollWidth-gallery.clientWidth;if((delta>0&&gallery.scrollLeft>=max-1)||(delta<0&&gallery.scrollLeft<=1)||!delta)return;event.preventDefault();gallery.scrollLeft=Math.max(0,Math.min(max,gallery.scrollLeft+delta))},{passive:false});
 
 // Each story section can pause its drift independently.
+const storyDriftGrids = [];
 for (const button of document.querySelectorAll('.story-drift-toggle')) {
   const grid = document.getElementById(button.getAttribute('aria-controls'));
   grid.classList.add('is-drifting');
+  storyDriftGrids.push({ grid, energy: 0 });
 
   const syncMotionPreference = () => {
     button.hidden = reduced.matches;
@@ -39,5 +41,58 @@ for (const button of document.querySelectorAll('.story-drift-toggle')) {
   button.addEventListener('click', () => {
     const paused = grid.classList.toggle('is-drift-paused');
     button.textContent = paused ? '继续漂浮' : '暂停漂浮';
+    if (!paused) queueStoryDrift();
   });
 }
+
+let storyDriftFrame = 0;
+let previousStoryScroll = scrollY;
+let previousStoryFrame;
+
+function queueStoryDrift() {
+  if (!storyDriftFrame && !reduced.matches) {
+    storyDriftFrame = requestAnimationFrame(updateStoryDrift);
+  }
+}
+
+function updateStoryDrift(now) {
+  storyDriftFrame = 0;
+  const elapsed = previousStoryFrame === undefined
+    ? 1000 / 60
+    : Math.min(50, Math.max(1, now - previousStoryFrame));
+  const currentScroll = scrollY;
+  const speed = Math.abs(currentScroll - previousStoryScroll) / elapsed;
+  previousStoryScroll = currentScroll;
+  previousStoryFrame = undefined;
+
+  if (reduced.matches || document.querySelector('dialog[open]')) return;
+
+  // Either scroll direction adds energy. Release it more slowly than it builds.
+  const target = Math.min(1, speed / 1.4);
+  let stillMoving = false;
+  for (const state of storyDriftGrids) {
+    if (state.grid.classList.contains('is-drift-paused')) continue;
+    if (!state.energy && !target) continue;
+    const timeConstant = target > state.energy ? 45 : 380;
+    state.energy += (target - state.energy) * (1 - Math.exp(-elapsed / timeConstant));
+    if (state.energy < 0.005 && !target) state.energy = 0;
+    state.grid.style.setProperty('--drift-energy', state.energy.toFixed(3));
+    if (state.energy > 0) stillMoving = true;
+  }
+
+  if (stillMoving) {
+    previousStoryFrame = now;
+    queueStoryDrift();
+  }
+}
+
+addEventListener('scroll', queueStoryDrift, { passive: true });
+document.addEventListener('close', queueStoryDrift, true);
+reduced.addEventListener('change', () => {
+  previousStoryScroll = scrollY;
+  previousStoryFrame = undefined;
+  for (const state of storyDriftGrids) {
+    state.energy = 0;
+    state.grid.style.removeProperty('--drift-energy');
+  }
+});
