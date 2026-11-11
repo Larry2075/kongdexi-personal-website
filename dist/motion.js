@@ -24,3 +24,20 @@ function stepGallery(direction){const card=gallery.querySelector('.gallery-photo
 galleryPrev.addEventListener('click',()=>stepGallery(-1));galleryNext.addEventListener('click',()=>stepGallery(1));
 gallery.addEventListener('scroll',updateGalleryControls,{passive:true});addEventListener('resize',updateGalleryControls);updateGalleryControls();
 gallery.addEventListener('wheel',event=>{if(event.ctrlKey||event.metaKey||event.shiftKey||Math.abs(event.deltaX)>=Math.abs(event.deltaY))return;const unit=event.deltaMode===1?16:event.deltaMode===2?gallery.clientWidth:1;const delta=event.deltaY*unit;const max=gallery.scrollWidth-gallery.clientWidth;if((delta>0&&gallery.scrollLeft>=max-1)||(delta<0&&gallery.scrollLeft<=1)||!delta)return;event.preventDefault();gallery.scrollLeft=Math.max(0,Math.min(max,gallery.scrollLeft+delta))},{passive:false});
+
+// Each story section can pause its drift independently.
+for (const button of document.querySelectorAll('.story-drift-toggle')) {
+  const grid = document.getElementById(button.getAttribute('aria-controls'));
+  grid.classList.add('is-drifting');
+
+  const syncMotionPreference = () => {
+    button.hidden = reduced.matches;
+  };
+
+  syncMotionPreference();
+  reduced.addEventListener('change', syncMotionPreference);
+  button.addEventListener('click', () => {
+    const paused = grid.classList.toggle('is-drift-paused');
+    button.textContent = paused ? '继续漂浮' : '暂停漂浮';
+  });
+}

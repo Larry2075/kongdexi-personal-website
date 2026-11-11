@@ -26,3 +26,111 @@ footer{background:rgba(15,30,48,.92)}
 
 /* All life photos reuse the photo viewer; portrait images keep their full framing. */
 .gallery-photo{border:0;cursor:zoom-in;color:inherit}.gallery-photo.is-portrait img{object-fit:contain}
+
+/* Let each story photo drift at its own pace while keeping its place in the grid. */
+.story-kicker {
+  align-items: center;
+}
+
+.story-kicker-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  gap: 4px 12px;
+  text-align: right;
+}
+
+.story-drift-toggle {
+  min-height: 28px;
+  padding: 4px 9px;
+  border: 1px solid currentColor;
+  border-radius: 999px;
+  background: transparent;
+  font-size: 11px;
+}
+
+.story-drift-toggle:hover {
+  background: rgba(255, 255, 255, .55);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .story-grid.is-drifting {
+    column-gap: 60px;
+  }
+
+  .story-grid.is-drifting > .story-photo {
+    --drift-x: 21px;
+    --drift-y: 19px;
+    --drift-tilt: 1.6deg;
+    --drift-period: 19s;
+    --drift-delay: -5s;
+    --drift-scale: 1;
+    animation: story-photo-drift var(--drift-period) ease-in-out var(--drift-delay) infinite;
+  }
+
+  .story-grid.is-drifting > .story-photo:nth-child(2n) {
+    --drift-x: -25px;
+    --drift-y: 17px;
+    --drift-tilt: -1.3deg;
+    --drift-period: 23s;
+    --drift-delay: -11s;
+  }
+
+  .story-grid.is-drifting > .story-photo:nth-child(3n) {
+    --drift-x: 17px;
+    --drift-y: 22px;
+    --drift-period: 26s;
+    --drift-delay: -16s;
+  }
+
+  .story-grid.is-drifting > .story-photo:nth-child(5n) {
+    --drift-x: -18px;
+    --drift-y: 24px;
+    --drift-period: 21s;
+    --drift-delay: -8s;
+  }
+
+  .story-grid.is-drift-paused > .story-photo,
+  .story-grid.is-drifting > .story-photo:has(:focus-visible),
+  body:has(dialog[open]) .story-grid.is-drifting > .story-photo {
+    animation-play-state: paused;
+  }
+
+  @media (hover: hover) {
+    .story-grid.is-drifting > .story-photo:hover {
+      animation-play-state: paused;
+    }
+  }
+
+  @media (max-width: 760px) {
+    .story-grid.is-drifting {
+      column-gap: 24px;
+    }
+
+    .story-grid.is-drifting > .story-photo {
+      --drift-scale: .36;
+    }
+  }
+}
+
+@keyframes story-photo-drift {
+  0%, 100% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+  25% {
+    transform:
+      translate(calc(var(--drift-x) * var(--drift-scale)), calc(var(--drift-y) * var(--drift-scale) * -.65))
+      rotate(calc(var(--drift-tilt) * var(--drift-scale)));
+  }
+  52% {
+    transform:
+      translate(calc(var(--drift-x) * var(--drift-scale) * .2), calc(var(--drift-y) * var(--drift-scale)))
+      rotate(0deg);
+  }
+  78% {
+    transform:
+      translate(calc(var(--drift-x) * var(--drift-scale) * -.8), calc(var(--drift-y) * var(--drift-scale) * -.35))
+      rotate(calc(var(--drift-tilt) * var(--drift-scale) * -.65));
+  }
+}
